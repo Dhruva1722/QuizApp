@@ -9,27 +9,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="30sp"
-        tools:itemCount="1"
-        tools:listitem="@layout/quiz_item"
-        android:scrollbarAlwaysDrawHorizontalTrack="false"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:listitem="@layout/quiz_item"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:scrollbarAlwaysDrawHorizontalTrack="true"/>-->
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/recyclerView"
         android:layout_alignParentEnd="true"
-        android:text="Submit"
-        android:visibility="gone"/>
+        android:text="Submit" />
 
     <Button
         android:id="@+id/prevButton"
@@ -37,8 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/recyclerView"
         android:layout_alignParentStart="true"
-        android:text="Previous"
-        android:enabled="false"/>
+        android:text="Previous" />
 
     <Button
         android:id="@+id/nextButton"

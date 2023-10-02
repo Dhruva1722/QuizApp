@@ -1,38 +1,38 @@
 <resources>
     <string name="app_name">TestQuizApp</string>
 
-    <string-array name="questions">
-        <item>What is 2 + 2?</item>
-        <item>What is the capital of France?</item>
-        <item>What is the largest planet in our solar system?</item>
-    </string-array>
+<!--    <string-array name="questions">-->
+<!--        <item>What is 2 + 2?</item>-->
+<!--        <item>What is the capital of France?</item>-->
+<!--        <item>What is the largest planet in our solar system?</item>-->
+<!--    </string-array>-->
 
-    <string-array name="options1">
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-    </string-array>
+<!--    <string-array name="options1">-->
+<!--        <item>3</item>-->
+<!--        <item>4</item>-->
+<!--        <item>5</item>-->
+<!--        <item>6</item>-->
+<!--    </string-array>-->
 
-    <string-array name="options2">
-        <item>Paris</item>
-        <item>Rome</item>
-        <item>London</item>
-        <item>Berlin</item>
-    </string-array>
+<!--    <string-array name="options2">-->
+<!--        <item>Paris</item>-->
+<!--        <item>Rome</item>-->
+<!--        <item>London</item>-->
+<!--        <item>Berlin</item>-->
+<!--    </string-array>-->
 
-    <string-array name="options3">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Jupiter</item>
-    </string-array>
+<!--    <string-array name="options3">-->
+<!--        <item>Mercury</item>-->
+<!--        <item>Venus</item>-->
+<!--        <item>Earth</item>-->
+<!--        <item>Jupiter</item>-->
+<!--    </string-array>-->
 
-    <integer-array name="correct_answers">
-        <item>1</item>
-        <item>0</item>
-        <item>3</item>
-    </integer-array>
+<!--    <integer-array name="correct_answers">-->
+<!--        <item>1</item>-->
+<!--        <item>0</item>-->
+<!--        <item>3</item>-->
+<!--    </integer-array>-->
 
 
 </resources>

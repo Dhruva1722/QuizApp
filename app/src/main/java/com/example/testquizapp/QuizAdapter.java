@@ -1,94 +1,72 @@
 package com.example.testquizapp;
 
-import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
-    private String[] questions;
-    private String[][] options;
-    private int[] correctAnswers;
-    private int[] selectedAnswers;
+    private List<Question> questions;
 
-
-    public QuizAdapter(String[] questions, String[][] options, int[] correctAnswers) {
+    public QuizAdapter(List<Question> questions) {
         this.questions = questions;
-        this.options = options;
-        this.correctAnswers = correctAnswers;
-        this.selectedAnswers = new int[questions.length];
-        // Initialize selectedAnswers with -1 to indicate no answer selected
-        for (int i = 0; i < selectedAnswers.length; i++) {
-            selectedAnswers[i] = -1;
-        }
     }
 
 
     @NonNull
     @Override
-    public QuizAdapter.QuizViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.quiz_item, parent, false);
+    public QuizViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.quiz_item, parent, false);
+
+        Log.d("QuizAdapter", "onCreateViewHolder called"); // Add this line for debugging
+
         return new QuizViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull QuizAdapter.QuizViewHolder holder, int position) {
-        holder.bind(position);
+        final Question question = questions.get(position);
+        holder.questionText.setText(question.getQuestionText());
+
+        for (int i = 0; i < holder.optionsGroup.getChildCount(); i++) {
+            final RadioButton option = (RadioButton) holder.optionsGroup.getChildAt(i);
+            option.setText(question.getOptions().get(i));
+
+            // Set a click listener to track selected answers
+            option.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Update the selected answer for this question
+                    question.setSelectedAnswer(option.getText().toString());
+                }
+            });
+        }
     }
+
 
     @Override
     public int getItemCount() {
-        return questions.length;
+        return questions.size();
     }
 
-    public int getSelectedAnswer(int position) {
-        return selectedAnswers[position];
-    }
 
-    public void setSelectedAnswer(int position, int answerIndex) {
-        selectedAnswers[position] = answerIndex;
-        notifyDataSetChanged();
-    }
-
-    public class QuizViewHolder extends RecyclerView.ViewHolder {
-        private RadioGroup optionRadioGroup;
-
+    public class QuizViewHolder extends ViewHolder {
+        TextView questionText;
+        RadioGroup optionsGroup;
         public QuizViewHolder(@NonNull View itemView) {
             super(itemView);
-            optionRadioGroup = itemView.findViewById(R.id.optionsRadioGroup);
-        }
-
-        public void bind(final int position) {
-            optionRadioGroup.removeAllViews(); // Clear existing radio buttons
-
-            for (int i = 0; i < options[position].length; i++) {
-                RadioButton radioButton = new RadioButton(itemView.getContext());
-                radioButton.setText(options[position][i]);
-                radioButton.setId(i); // Set the ID to the index for reference
-                optionRadioGroup.addView(radioButton);
-
-                // Check the radio button if it matches the selected answer
-                radioButton.setChecked(selectedAnswers[position] == i);
-
-                radioButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Update the selected answer when a radio button is clicked
-                        setSelectedAnswer(position, v.getId());
-                    }
-                });
-            }
+            questionText = itemView.findViewById(R.id.questionText);
+            optionsGroup = itemView.findViewById(R.id.optionsGroup);
         }
     }
 }
